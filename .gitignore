@@ -69,3 +69,6 @@ tools/gulp-tasks/cldr/cldr-data/
 .husky/_
 
 *.properties
+*.yml
+.metadata
+.sonarlint
