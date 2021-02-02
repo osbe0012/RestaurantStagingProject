@@ -5,23 +5,23 @@
    - (Twitter) Bootstrap 
    -  Karma/Jasmine
 ## Back End
-   - Java 8
-   - Maven
-   - *Lombok
-   - Spring Boot
-   - Spring Starter Web
-   - Spring Boot Dev Tools
-   - Spring Boot Actuator
-   - Spring Data 
-   - *Spring Security
-   - Spring Cloud Gateway
-   - Spring Cloud Consul
-   - *Spring Cloud Config
-   - H2 Datasource 
-   - *Spring Kafka
-   - Junit 5
-   - Mockito
-   - Log4j
- ## Dev Ops
-   - *Jenkins
-   - Docker
+## Core Technologies
+- Java 8
+- Maven
+- Junit 5
+- Mockito
+- Log4j
+## Core Spring Dependecies
+- Lombok
+- Spring Web
+- Spring Boot DevTools
+- Spring Configuration Processor
+- Spring Security
+- H2 Database
+- Spring Boot Actuator
+- Consul Discovery
+- Gateway
+- Spring for Apache Kafka
+## Dev Ops
+- Jenkins
+- Docker
