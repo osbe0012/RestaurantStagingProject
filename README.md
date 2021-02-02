@@ -4,6 +4,7 @@
    -  Angular
    - (Twitter) Bootstrap 
    -  Karma/Jasmine
+   
 # Back End
 ## Core Technologies
 - Java 8
@@ -11,6 +12,7 @@
 - Junit 5
 - Mockito
 - Log4j
+
 ## Core Spring Dependecies
 - Lombok
 - Spring Web
@@ -22,6 +24,8 @@
 - Consul Discovery
 - Gateway
 - Spring for Apache Kafka
+- Spring Data JPA
+
 ## Dev Ops
 - Jenkins
 - Docker
