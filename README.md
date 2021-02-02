@@ -1,10 +1,10 @@
 # RestaurantStagingProject
 
-## Front End
+# Front End
    -  Angular
    - (Twitter) Bootstrap 
    -  Karma/Jasmine
-## Back End
+# Back End
 ## Core Technologies
 - Java 8
 - Maven
