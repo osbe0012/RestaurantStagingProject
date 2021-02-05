@@ -1,0 +1,28 @@
+
+server: 
+    port: 8081 #our service runs on port 8081. We are configuring it manually as of now, but should switch to automated config soon.
+
+spring: 
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: password 
+        hikari:
+            schema: stagingrestaraunt
+    application:
+        ##our service will be registered as auth-service with consul. Any uri requiring authentication should have this at the 
+        ## the api root /auth-service/employee/get... and etc, so that the gateway can perform the correct lookup.
+        name: auth 
+    cloud:
+        consul: ##look for consul agent on tcp port 8500
+            host: localhost
+            port: 8500
+    jpa:
+        hibernate:
+            ddl-auto: update            
+        properties:
+            hibernate:
+                    dialect: org.hibernate.dialect.PostgreSQLDialect
+                 
+
