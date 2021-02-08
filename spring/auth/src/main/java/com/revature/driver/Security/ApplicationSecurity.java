@@ -1,14 +1,11 @@
 package com.revature.driver.Security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.driver.Filters.ApplicationExceptionTranslationFilter;
 import com.revature.driver.Filters.LoginFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -65,13 +62,20 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         .cors()
         .disable()
         .addFilterAt(this.loginFilter,UsernamePasswordAuthenticationFilter.class) //replcce login filter in chain
-        .addFilterAt(this.customExceptionFilter, ExceptionTranslationFilter.class) //replace exception translation filter in chain
+        .sessionManagement()
+        .maximumSessions(1)
+        .maxSessionsPreventsLogin(true) //if you login more than once, your old session id is expired
+        .and()
+        .and()
         .authorizeRequests()
         .antMatchers("/login")
         .permitAll()
-        .antMatchers("/auth/**")
-        .authenticated(); //only authenticated users can access /auth points and beyond
-
+        .antMatchers("/auth/customer/**")
+        .hasAuthority("customer")
+        .antMatchers("/auth/employee/**")
+        .hasAuthority("employee")
+        .antMatchers("/auth/manager/**")
+        .hasAuthority("manager");
     }
 
     @Override
@@ -81,7 +85,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/actuator/**");
+        web.
+        ignoring().
+        antMatchers("/actuator/**");
     }
 
 

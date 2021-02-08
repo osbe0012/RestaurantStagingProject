@@ -2,6 +2,7 @@ package com.revature.driver.Security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ public class AccountDetails implements UserDetails {
 
     private String username;
     private String password; 
+    private List<GrantedAuthority> usersGrantedAuthorities;
 
     /**Make default cstr privage since it makes no sense to init this class without 
      * having the username and password fields set. 
@@ -24,16 +26,17 @@ public class AccountDetails implements UserDetails {
     /**Use this constructor to build an AccountDetails object. The Userdetails interface
      * has no setters, so username and password can be passed through the constructor.
      */
-    public AccountDetails(String username,String password){
+    public AccountDetails(String username,String password, List<GrantedAuthority> usersAuthorities){
         super();
         this.username = username;
         this.password = password;
+        this.usersGrantedAuthorities = usersAuthorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
-        return new ArrayList<GrantedAuthority>();
+        return  this.usersGrantedAuthorities;
     }
 
     @Override

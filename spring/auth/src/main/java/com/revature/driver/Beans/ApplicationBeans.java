@@ -3,6 +3,7 @@ package com.revature.driver.Beans;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,5 +21,4 @@ public class ApplicationBeans {
         //return new BCryptPasswordEncoder(12);
         return NoOpPasswordEncoder.getInstance(); //makes testing easier
     }
-    
 }

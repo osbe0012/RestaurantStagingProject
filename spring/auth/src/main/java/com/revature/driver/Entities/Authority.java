@@ -1,12 +1,8 @@
 package com.revature.driver.Entities;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,11 +12,11 @@ import lombok.Data;
 */
 @Data
 @Entity()
-@Table(name="authority_lookup")
+@Table(name="authority")
 public class Authority {
     @Id
     @Column(insertable=true, updatable = false, nullable = false)
-    int authority;
+    int authority_id; //the unique integer id of an authority.
     @Column(insertable=true, updatable = false, nullable = false)
-    String authority_description;
+    String authority_description; //a string description of the authority like Manager, employee, and etc.
 }

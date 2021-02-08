@@ -3,11 +3,18 @@ server:
     port: 8081 #our service runs on port 8081. We are configuring it manually as of now, but should switch to automated config soon.
 
 spring: 
+    session:
+        store-type: redis
+    redis:
+        port: 6379
+        host: localhost
     datasource:
         driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5432/postgres
         username: postgres
         password: password 
+        platform: postgresql
+        initialization-mode: ALWAYS ##not using embedded db for now. set this to get postgres db to init with data.sql
         hikari:
             schema: stagingrestaraunt
     application:
@@ -20,7 +27,7 @@ spring:
             port: 8500
     jpa:
         hibernate:
-            ddl-auto: update            
+            ddl-auto: create-drop ##create-drop setting for dev mode        
         properties:
             hibernate:
                     dialect: org.hibernate.dialect.PostgreSQLDialect

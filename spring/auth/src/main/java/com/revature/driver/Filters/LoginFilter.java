@@ -16,8 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.stereotype.Component;
-
 
 /**
  * The login filter is used to log users in. It's fairly similar to the Spring's
@@ -27,7 +30,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginFilter extends HttpFilter {
 
-    AuthenticationManager applicationAuthManager;
+	AuthenticationManager applicationAuthManager;
     ObjectMapper applicationObjectMapper;
 
     @Autowired
@@ -40,23 +43,36 @@ public class LoginFilter extends HttpFilter {
     public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain)
             throws IOException, ServletException {
 
+        UsernamePasswordAuthenticationFilter a;
        Authentication userAuthentication = null;
        LoginToken usersLoginToken = null;
        String requestUri = servletRequest.getRequestURI();
   
-       if(requestUri.equals("/login"))
+       if(requestUri.equals("/actuator/health"))
+                return;
+
+       //for some reason request loops twice through the SecurityFilterChain, so checking for the authentication  from the sec context
+       //ensures we do not attempt to authenticate the user the second time around where the body will be null
+       //and an exception will be thrown.
+       if(requestUri.equals("/login") && SecurityContextHolder.getContext().getAuthentication() == null)
        {
             usersLoginToken = this.getLoginTokenFromBody(servletRequest);
             userAuthentication = new UsernamePasswordAuthenticationToken(usersLoginToken.username, usersLoginToken.password);
             userAuthentication = this.applicationAuthManager.authenticate(userAuthentication);
 
             if(userAuthentication.isAuthenticated())
+            {
                 servletResponse.setStatus(200);
-            else
+                SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+            }
+            else{
                 servletResponse.setStatus(401);
-       }
+                return; //no need to continue down the filter chain, just exit. Bad user creds.
+            }
 
-       chain.doFilter(servletRequest, servletResponse);
+       }
+    
+            chain.doFilter(servletRequest, servletResponse);
 
             
     }
