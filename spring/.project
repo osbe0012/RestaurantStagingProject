@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>RestaurantStagingProject</name>
+	<name>project-starter</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1612387195327</id>
+			<id>1612802243627</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

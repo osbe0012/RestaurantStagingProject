@@ -43,7 +43,7 @@ public class LoginFilter extends HttpFilter {
     public void doFilter(HttpServletRequest servletRequest, HttpServletResponse servletResponse, FilterChain chain)
             throws IOException, ServletException {
 
-        UsernamePasswordAuthenticationFilter a;
+       UsernamePasswordAuthenticationFilter a;
        Authentication userAuthentication = null;
        LoginToken usersLoginToken = null;
        String requestUri = servletRequest.getRequestURI();
