@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Abel', sans-serif;;
+}
+
+
+.border-custom {
+    border: 1px solid #b09c87;
+}
+
+body {
+    background-image: url("./assets/website_background.png");
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+.text-custom {
+    color:#7d756b;
+}
+
+.text-custom-darker {
+    color: #664a25;
+}
