@@ -27,11 +27,11 @@ public class UserAuthorities {
 
     @Id
     Integer user_authority_pk;    
-    String username; //owning user
+    String username; //the user this authority belongs to.
 
     @JoinColumn(name="authority_id", referencedColumnName = "authority_id")
     @OneToOne(fetch = FetchType.EAGER)
-    Authority userAuthority;
+    Authority userAuthority; //the mapped authority object to to this unique user_authority_pk
    
     
 }

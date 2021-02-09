@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableDiscoveryClient // Connect app to consul
 @EnableJpaRepositories // Enable jpa repositories and scan sub folders for repository interfaces.
-public class RestaurantStagingProjectApplication 
+public class AuthServiceDriver 
 {
 	public static void main(String[] args) {
-		SpringApplication.run(RestaurantStagingProjectApplication.class, args);
+		SpringApplication.run(AuthServiceDriver.class, args);
 	}
 }

@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/**This controller will ultimately use a web client to forward requests which have passed auth 
+ * checks to the destination microservice, like the employee microservice or customer microservice
+  */
 @RestController
-
-public class TestController {
+//fine for now add in feign client and associate functionality that allows the controller 
+//to talk to microservices registered with consul.
+public class ClientController {
 
     @RequestMapping(path="/auth/manager", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)

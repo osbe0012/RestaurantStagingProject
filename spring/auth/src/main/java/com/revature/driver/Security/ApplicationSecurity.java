@@ -17,6 +17,7 @@ import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
+/**The ApplicationSecurity objects configures the Security settings of our application. */
 @Configuration(value = "app-security")
 @EnableWebSecurity
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
@@ -62,6 +63,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         .cors()
         .disable()
         .addFilterAt(this.loginFilter,UsernamePasswordAuthenticationFilter.class) //replcce login filter in chain
+        .addFilterAfter(this.customExceptionFilter, ExceptionTranslationFilter.class) // add custom exception transaltion after spring sec.
         .sessionManagement()
         .maximumSessions(1)
         .maxSessionsPreventsLogin(true) //if you login more than once, your old session id is expired

@@ -20,6 +20,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * The AccountDetailsService fetches User objects from our data store through the injected UserRepository, 
+ * and the AccountDetailsService converts that object into an AccountDetails, populating username, password, and a list 
+ * of Authorities. 
+ */
 @Service
 public class AccountDetailsService implements UserDetailsService {
 

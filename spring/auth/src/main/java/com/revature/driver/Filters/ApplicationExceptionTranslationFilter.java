@@ -14,6 +14,11 @@ import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.stereotype.Component;
 @Component
 @DependsOn("app-security")
+
+/**This is a custom ExceptionTranslationFilter which eclipses the default exception handling behavior 
+ * of the prebuilt filter. Specifically, it does not send a stack trace to the user; instead, it sends an 
+ * empty body and the correct status code.
+   */
 public class ApplicationExceptionTranslationFilter extends ExceptionTranslationFilter {
 
    
