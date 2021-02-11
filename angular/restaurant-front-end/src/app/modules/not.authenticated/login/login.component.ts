@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {faUser} from '@fortawesome/free-regular-svg-icons'
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public userIcon:any;
+
+  constructor() { 
+    this.userIcon = faUser;
+  }
 
   ngOnInit(): void {
   }
